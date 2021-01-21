@@ -55,10 +55,13 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons})
   }
+
+  // the spread operator helps update state by creating a copy so that you could change it and then it updates it with the most recently updated state
 
   nameChangeHandler = (event) => {
     this.setState({persons: [

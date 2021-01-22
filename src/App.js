@@ -42,7 +42,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -159,8 +158,9 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
 
 // state is only usable in extended components
 // for the handlers, use the bind method over using the function call method; the function call can be inefficient
 // event.target.value allows you to dynamically change something and how handle inputs
+// wrap the rendered with <StyleRoot></StyleRoot>

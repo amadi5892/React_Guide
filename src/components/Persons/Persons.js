@@ -9,7 +9,7 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate');
-        if(nextProps.prsons !== this.props.persons) {
+        if(nextProps.prsons !== this.props.persons || nextProps.changed !== this.props.changed || nextProps.clicked !== this.props.clicked) {
             return true;
         } else {
             return false;
@@ -44,3 +44,5 @@ class Persons extends Component {
 }
 
 export default Persons;
+
+// PureComponent will do what shouldComponentUpdate 

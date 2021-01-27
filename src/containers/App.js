@@ -46,6 +46,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 import withClass from '../hoc/withClass';
 import Auxillary from '../hoc/Auxillary';
+import AuthContext from '../context/auth-context';
 // import styled from 'styled-components';
 
 // const StyledButton = styled.button`
@@ -165,14 +166,18 @@ class App extends Component {
     return (
       <Auxillary>
         <button onClick={() => {this.setState({showCockpit: false})}}>Remove Cockpit</button>
-        {this.state.showCockpit ? (
-        <Cockpit 
-        showPersons={this.state.showPersons} 
-        personsLength={this.state.persons.length}
-        clicked={this.togglePersonsHandler}
-        title={this.props.appTitle}
-        login={this.loginHandler} />) : null}
-        {persons}
+        <AuthContext.Provider 
+        value={{
+          authenticated: this.state.authenticated, 
+          login: this.loginHandler}} >
+          {this.state.showCockpit ? (
+          <Cockpit 
+          showPersons={this.state.showPersons} 
+          personsLength={this.state.persons.length}
+          clicked={this.togglePersonsHandler}
+          title={this.props.appTitle} />) : null}
+          {persons}
+        </AuthContext.Provider>
       </Auxillary>
     );
     // return React.createElement('div',{className: 'App'}, React.createElement('h1',null, 'Hi I\'m a React App!!!'))
